@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- search -->
+	<record id="view_type_info_search" model="ir.ui.view">
+        <field name="name">type.info.search</field>
+        <field name="model">type.info</field>
+        <field name="arch" type="xml">
+            <search string="Type">
+                <field name="name" filter_domain="['|', ('name','ilike',self), ('type','ilike',self)]" string="Type"/>
+            </search>
+        </field>
+    </record>
+    <!-- tree-->
+    <record id="view_type_info_tree" model="ir.ui.view">
+        <field name="name">type.info.tree</field>
+        <field name="model">type.info</field>
+        <field name="arch" type="xml">
+            <tree string="Type">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+	<!-- form -->
+    <record id="type_info_form" model="ir.ui.view">
+        <field name="name">type.info.form</field>
+        <field name="model">type.info</field>
+        <field name="arch" type="xml">
+            <form string="Type">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="toggle_active" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group col="4">
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- action of the menu -->
+    <record id = "action_type_info" model="ir.actions.act_window">
+        <field name="name">Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">type.info</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face"> Create your first entry! </p>
+        </field>
+    </record>
+	
+    <menuitem id="menu_type_info" name="Type Info"
+            parent="contacts.menu_localisation" action="action_type_info" groups="base.group_partner_manager"/>
+</odoo>
